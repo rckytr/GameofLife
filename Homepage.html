@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conway's Game of Life - Home</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav>
+    <div class="logo">Game of Life</div>
+    <ul class="nav-links">
+      <li><a href="login.php">Login</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="home-container">
+    <section class="intro">
+      <h1>Welcome to Conway's Game of Life</h1>
+      <p>The Game of Life includes a of a grid of cells that change through generations based on a set of simple rules.</p>
+      <h2>How It Works:</h2>
+      <ul>
+        <li><strong>Still Life:</strong> Static patterns that don't change from one generation to the next.</li>
+        <li><strong>Oscillators:</strong> Patterns that  are repetetive and repeat themselves over many generations.</li>
+        <li><strong>Gliders (Spaceships):</strong> Patterns that move across the grid over time.</li>
+      </ul>
+      <button id="startGameBtn" class="start-button">Start Game</button>
+    </section>
+  </main>
+
+  <!-- Script to handle button click -->
+  <script>
+    document.getElementById('startGameBtn').addEventListener('click', function() {
+      const button = this;
+      button.disabled = true; // Disable the button
+      window.location.href = 'game.php'; // Navigate to the game page
+    });
+  </script>
+
+</body>
+</html>
