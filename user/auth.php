@@ -1,41 +1,51 @@
+<?php
+session_start();
 
+// Check if user is logged in
+if (isset($_SESSION['user'])) {
+    $username = $_SESSION['user'];
+} else {
+    // Redirect to login page if not logged in
+    header('Location: login.php');
+    exit();
+}
 
+// Handle logout
+if (isset($_GET['logout'])) {
+    session_destroy();
+    header('Location: homepage.html');
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Game of Life</title>
+  <title>Welcome - Game of Life</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="indexstyles.css">
   <style>
-    table {
-      margin: 0 auto;
-      border-collapse: collapse;
-    }
-    td {
-      width: 15px;
-      height: 15px;
-      border: 1px solid #ccc;
-      background-color: #f0f0f0;
-    }
-    .alive {
-      background-color: black;
-    }
+    body { font-family: Arial, sans-serif; background: #f0f0f0; padding-top: 60px; }
+    table { margin: 0 auto; border-collapse: collapse; }
+    td { width: 15px; height: 15px; border: 1px solid #ccc; background-color: #f0f0f0; }
+    .alive { background-color: black; }
   </style>
 </head>
 
 <body>
-<nav class="navbar navbar-light bg-light">
+<nav class="navbar navbar-light bg-light fixed-top">
   <div class="container-fluid">
     <span class="navbar-text">
-      Logged in as: <strong><?php echo htmlspecialchars($_SESSION['username']); ?></strong>
+      Logged in as: <strong><?php echo htmlspecialchars($username); ?></strong>
     </span>
-    <a href="logout.php" class="btn btn-danger">Logout</a>
+    <a href="?logout=1" class="btn btn-danger">Logout</a>
   </div>
 </nav>
 
 <div class="container text-center mt-4">
-  <h1>Conway's Game of Life</h1>
+  <h1>Welcome, <?php echo htmlspecialchars($username); ?>!</h1>
+  <p>You are logged in. Enjoy Conway's Game of Life below.</p>
+
+  <h2 class="mt-5">Conway's Game of Life</h2>
 
   <div id="grid-container" class="my-4"></div>
 
